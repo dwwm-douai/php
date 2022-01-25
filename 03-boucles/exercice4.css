@@ -1,0 +1,31 @@
+.flex {
+    display: flex;
+}
+
+.resultat {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.carre {
+    width: max-content;
+    border: 1px solid #000;
+}
+
+.legend {
+    border-right: 1px solid #000;
+}
+
+.legend-haut {
+    border-bottom: 1px solid #000;
+}
+
+.dark-grey {
+    background-color: #6d6d6d;
+}
+
+.light-grey {
+    background-color: #cecece;
+}
