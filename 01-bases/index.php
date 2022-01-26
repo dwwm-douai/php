@@ -7,8 +7,8 @@
 <body>
     <?php
         // Echo permet d'afficher du texte
-        echo 'Salut les gens <br />';
-        echo 'Salut PHP <br />';
+        echo 'Salut les gens <br>';
+        echo 'Salut PHP <br>';
         // On peut utiliser les doubles et / ou échapper les quotes avec un \
         echo "J'affiche un \"texte\"";
 
@@ -21,8 +21,8 @@
 
         // La concaténation, c'est mettre bout à bout plusieurs chaines
         // de caractères et / ou variables.
-        echo 'J\'ai '.$age.' ans et je vais à '.$city.'. <br />';
-        echo "La variable \$price contient $price. <br />";
+        echo 'J\'ai '.$age.' ans et je vais à '.$city.'. <br>';
+        echo "La variable \$price contient $price. <br>";
     ?>
 </body>
 </html>
