@@ -17,7 +17,7 @@
         echo $prenoms[2].'<br>';
 
         // Comment ajouter un prénom au tableau ?
-        
+        $prenoms[] = 'Toto';
 
         // Comment afficher tous les prénoms ?
         // var_dump($prenoms);
