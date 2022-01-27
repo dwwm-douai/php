@@ -28,10 +28,17 @@
             // On va essayer de récupérer l'age s'il est présent dans l'URL
             // Exemple: "Bonjour Toto, tu as 21 ans"
             // Optionnellement, on ajoutera un champ dans le formulaire où l'utilisateur peut saisir son âge
+            $age = $_GET['age'] ?? null;
         ?>
 
         <?php if ($nom) { ?>
-        <h1>Bonjour <?php echo $nom; ?></h1>
+        <h1>
+            Bonjour <?php echo $nom; ?>
+
+            <?php if ($age) { ?>
+                , tu as <?php echo $age; ?> ans.
+            <?php } ?>
+        </h1>
         <?php } ?>
 
         <a href="index.php?nom=toto&age=21">Hello Toto</a>
@@ -45,6 +52,11 @@
             <label>
                 <input type="checkbox" name="majuscule" class="form-check-input"> Majuscule
             </label>
+
+            <select name="age" class="form-select">
+                <option value="18">18 ans</option>
+                <option value="19">19 ans</option>
+            </select>
 
             <div class="input-group">
                 <input type="text" name="nom" class="form-control">
