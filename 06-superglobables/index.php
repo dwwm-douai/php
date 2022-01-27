@@ -59,10 +59,12 @@
             </select>
 
             <div class="input-group">
-                <input type="text" name="nom" class="form-control">
+                <input type="text" name="nom" class="form-control" value="<?php echo $nom; ?>">
                 <button class="btn btn-primary">Go</button>
             </div>
         </form>
+
+        <a href="candidature.php">Candidater</a>
     </div>
 </body>
 </html>
