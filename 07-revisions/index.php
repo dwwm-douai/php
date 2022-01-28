@@ -1,3 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Révisions</title>
+
+    <style>
+        .bouton {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .vert {
+            background-color: lightgreen;
+        }
+
+        .rouge {
+            background-color: red;
+        }
+
+        table {
+            border: 1px solid #000;
+            width: 300px;
+        }
+
+        .pair {
+            background-color: lightgrey;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conditions</h1>
+
+    <?php
+        $heure = $_GET['heure'] ?? 13;
+
+        echo "A $heure heures, ";
+
+        if ($heure >= 5 && $heure < 12) {
+            echo 'c\'est le matin.';
+        } elseif ($heure >= 12 && $heure < 18) {
+            echo 'c\'est l\'après midi.';
+        } elseif ($heure >= 18 && $heure < 21) {
+            echo 'c\'est le soir.';
+        } else {
+            echo 'c\'est la nuit.';
+        }
+    ?>
+
+    <form action="">
+        <select name="heure">
+            <?php for ($i = 0; $i < 24; $i++) { ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+            <?php } ?>
+        </select>
+        <button>Changer</button>
+    </form>
+
+    <?php
+        $isLogged = $_GET['logged'] ?? false;
+        // 0 == false, 1 == true
+    ?>
+
+    <?php if (!$isLogged) { ?>
+    <a class="bouton vert" href="index.php?logged=1">Connexion</a>
+    <?php } else { ?>
+    <a class="bouton rouge" href="index.php?logged=0">Déconnexion</a>
+    <?php } ?>
+
+    <h1>Boucles</h1>
+
+    <?php
+        echo '<h2>for</h2>';
+        for ($i = 62000; $i <= 62100; $i++) {
+            echo $i.' - ';
+        }
+
+        echo '<h2>while</h2>';
+        $i = 62100;
+        while ($i <= 62200) {
+            echo $i++.' - ';
+        }
+
+        echo '<h2>foreach</h2>';
+        foreach (range(62200, 62300) as $zip) {
+            echo $zip.' - ';
+        }
+    ?>
+
+    <h1>Tableaux</h1>
+
+    <?php
+        $vehicules = [
+            ['marque' => 'Renault', 'modele' => 'Megane', 'prix' => 5000],
+            ['marque' => 'BMW', 'modele' => 'X2', 'prix' => 17000],
+            ['marque' => 'Alfa Roméo', 'modele' => '147', 'prix' => 6500],
+            ['marque' => 'Peugeot', 'modele' => '308', 'prix' => 12000],
+        ];
+    ?>
+
+    <table>
+        <thead> <!-- Légende du tableau -->
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Prix</th>
+        </thead>
+
+        <?php foreach ($vehicules as $index => $vehicule) { ?>
+        <tr class="<?php echo ($index % 2 == 0) ? 'pair' : ''; ?>">
+            <td><?php echo $vehicule['marque']; ?></td>
+            <td><?php echo $vehicule['modele']; ?></td>
+            <td><?php echo number_format($vehicule['prix'], 2, ',', ' '); ?> €</td>
+        </tr>
+        <?php } ?>
+    </table>
+
+    <h1>Fonctions</h1>
+
+</body>
+</html>
+
 <?php
 
 // Les conditions
