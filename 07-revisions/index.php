@@ -91,6 +91,25 @@
         foreach (range(62200, 62300) as $zip) {
             echo $zip.' - ';
         }
+
+        echo '<br><br>';
+
+        $nombreATrouver = 435;
+        $nombreEssais = 0;
+        $dejaTeste = [];
+
+        do {
+            $test = rand(0, 1000);
+
+            // Si le nombre n'est pas déjà sorti, on l'ajoute au tableau et on
+            // incrémente le nombre d'essais
+            if (!in_array($test, $dejaTeste)) {
+                $dejaTeste[] = $test; // On ajoute le nombre donné dans le tableau
+                $nombreEssais++;
+            }
+        } while ($nombreATrouver != $test);
+
+        echo 'PHP a trouvé le nombre en '.$nombreEssais.' fois';
     ?>
 
     <h1>Tableaux</h1>
@@ -120,7 +139,56 @@
         <?php } ?>
     </table>
 
+    <br><br>
+
+    <?php
+        $vendeurs = [
+            'André' => ['Megane' => 0, 'Clio' => 3, 'Captur' => 0], // 60000
+            'Joe' => ['Megane' => 2, 'Clio' => 3, 'Captur' => 1], // 160000
+            'Eric' => ['Megane' => 1, 'Clio' => 1, 'Captur' => 1], // 90000
+        ];
+
+        $nbMeganes = 0;
+        $nbClio = 0;
+        $nbCaptur = 0;
+
+        foreach ($vendeurs as $vendeur => $ventes) {
+            $nbMeganes += $ventes['Megane']; // $vendeurs['André']['Megane'];
+            $nbClio += $ventes['Clio'];
+            $nbCaptur += $ventes['Captur'];
+            $ca = $ventes['Megane'] * 30000 + $ventes['Clio'] * 20000 + $ventes['Captur'] * 40000;
+            echo $vendeur.' a vendu '.array_sum($ventes).' voitures pour '.$ca.'<br>';
+        }
+
+        // Autre solution...
+        // echo array_sum(array_column($vendeurs, 'Megane')); // array_sum([0, 2, 1]);
+
+        echo 'La mégane a été vendue '.$nbMeganes.' fois <br>';
+        echo 'La clio a été vendue '.$nbClio.' fois <br>';
+        echo 'La captur a été vendue '.$nbCaptur.' fois <br>';
+    ?>
+
     <h1>Fonctions</h1>
+
+    <?php
+        function moyenne($tableau) {
+            return array_sum($tableau) / count($tableau);
+        }
+
+        echo moyenne([1, 2, 3]); // 2
+
+        echo '<br><br>';
+
+        function html($contenu, $balise) {
+            if (!in_array($balise, ['h1', 'h2', 'p'])) {
+                $balise = 'p';
+            }
+
+            return "<$balise>$contenu</$balise>";
+        }
+
+        echo html('Salut', 'h6');
+    ?>
 
 </body>
 </html>
