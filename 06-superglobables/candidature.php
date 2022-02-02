@@ -19,6 +19,8 @@
             $password = $_POST['password'] ?? null;
             $erreurs = [];
 
+            echo 'Je suis en '.$_SERVER['REQUEST_METHOD'].'<br>';
+
             // On vérifie si le formulaire est soumis (envoyé / rempli...)
             if (!empty($_POST)) {
                 // Vérifier s'il y a des erreurs dans le formulaire
@@ -27,20 +29,29 @@
                     $erreurs[] = 'Le prénom est invalide.';
                 }
 
+                // Vérifier que le mot de passe fasse au minimum 6 caractères
+                if (strlen($password) < 6) {
+                    $erreurs[] = 'Le mot de passe est trop court.';
+                }
+
                 if (empty($erreurs)) {
                     // On affiche un message de succès si tout va bien
                     echo "<div class='alert alert-success'>Merci $prenom pour votre candidature</div>";
                 } else {
                     // Afficher les erreurs...
                     // Mission => Afficher les erreurs proprement...
-                    var_dump($erreurs);
+                    echo '<ul class="alert alert-danger list-unstyled">';
+                    foreach ($erreurs as $erreur) {
+                        echo "<li>$erreur</li>";
+                    }
+                    echo '</ul>';
                 }
             }
         ?>
 
         <form method="post" action="">
             <label for="prenom">Prénom</label>
-            <input type="text" name="prenom" id="prenom" class="form-control" />
+            <input type="text" name="prenom" id="prenom" class="form-control" value="<?php echo $prenom; ?>" />
 
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" class="form-control" />
