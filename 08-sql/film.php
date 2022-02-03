@@ -9,7 +9,18 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Récupèrer le film dont l'id correspond dans la BDD
 // SELECTIONNE TOUS LES FILMS Où L'ID EST SUR 1
-$movie = $db->query('SELECT * FROM movies WHERE id = '.$id)->fetch();
+// $movie = $db->query('SELECT * FROM movies WHERE id = '.$id)->fetch();
+// On va "préparer" la requête pour nous protéger des injections SQL
+$query = $db->prepare('SELECT * FROM movies WHERE id = :id');
+
+// SOLUTION 1
+$query->bindValue(':id', $id);
+$query->execute();
+
+// SOLUTION 2
+$query->execute([':id' => $id]);
+
+$movie = $query->fetch();
 
 // Si le film n'existe pas
 if (!$movie) {
