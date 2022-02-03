@@ -20,6 +20,8 @@
     // [ [ 'title' => 'Le Parrain', 'duration' => 185 ], [ 'title' => 'Le Parrain', 'duration' => 185 ] ]
 ?>
     <div class="container">
+        <a href="ajout-film.php">Ajouter un film</a>
+
         <div class="row row-cols-4">
         <?php foreach ($movies as $movie) { ?>
             <div class="col">
