@@ -25,7 +25,7 @@
         if (strlen($description) < 10) {
             $erreurs[] = 'La description est trop courte.';
         }
-        var_dump($duration);
+
         if ($duration < 1) {
             $erreurs[] = 'La durée doit être au moins de 1.';
         }
