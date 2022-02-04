@@ -1,0 +1,36 @@
+- Exercice base de données
+
+1/ Créer une base de données exercice-sql-1
+2/ Créer une table products
+3/ Nous avons besoin de stocker plusieurs informations concernant des produits.
+   Un produit a un nom, un prix HT (décimal), une description (optionnelle), une photo (optionnelle) et un état (tinyint ou booléen).
+4/ Créer quelques produits via PhpMyAdmin. Vous pouvez ajouter les images directement dans un dossier images ou img.
+5/ Créer un fichier index.php et lister les produits de la BDD sur cette page (On affichera un maximum d'informations).
+   Vous aurez besoin de vous connecter à la BDD via PDO (Vous pouvez utiliser une fonction et un fichier à part avec include).
+   BONUS: Le prix sera affiché TTC. On aura une option pour changer l'affichage (HT ou TTC), pensez au $_GET...
+          On affiche "En stock" si l'état est 1 et "Hors stock" si l'état est à 0.
+6/ Créer un fichier produit.php afin d'afficher le détail d'un produit sur 2 colonnes (image d'un côté et titre de l'autre)
+
+- Exercice formulaire
+
+1/ Dans le même exercice, créer un fichier ajout-produit.php
+   Afficher un formulaire HTML (Vous pouvez intégrer Bootstrap de manière optionnelle)
+   Ajouter les champs nécessaires : nom, prix, description (textarea), état (checkbox). On gardera le champ photo pour plus tard (Upload de fichier).
+2/ A la soumission du formulaire, récupérer les champs de celui-ci en PHP ($_POST ?).
+   Grâce à ces champs, vous allez pouvoir insérer le produit dans la BDD avec la bonne requête SQL (insert).
+3/ Vous vérifierez s'il y a des erreurs dans le formulaire.
+   - Le nom est obligatoire et doit faire 2 caractères minimum.
+   - Le prix doit être au minimum de 1 et au maximum à 9999.
+   - La description, la photo sont optionnelles.
+
+   Attention, l'état doit être 0 ou 1 au moment où vous faites la requête d'insertion.
+
+Exo des slides sur les formulaires.
+
+- Avancé
+
+1/ Sur la liste des produits, avec la clause ORDER BY, essayez de trier les produits du plus cher au moins cher.
+2/ Sur la liste des produits, afficher le nombre total de produits.
+3/ Créer une nouvelle page où vous afficherez uniquement 3 produits de manière aléatoire.
+4/ Ajouter un formulaire de recherche avec un champ "query".
+   Si la valeur $_GET est présente, modifiez la requête pour ajouter un WHERE permettant d'effectuer une recherche sur le nom du produit (LIKE)

@@ -22,6 +22,7 @@
             $erreurs[] = 'La date est requise.';
         }
 
+        // La description doit faire 10 caractères minimum
         if (strlen($description) < 10) {
             $erreurs[] = 'La description est trop courte.';
         }
@@ -66,16 +67,16 @@
 
         <form action="" method="post">
             <label for="title">Titre</label>
-            <input type="text" name="title" id="title" class="form-control">
+            <input type="text" name="title" id="title" class="form-control" value="<?php echo $title; ?>">
 
             <label for="released_at">Date de sortie</label>
-            <input type="date" name="released_at" id="released_at" class="form-control">
+            <input type="date" name="released_at" id="released_at" class="form-control" value="<?php echo $released_at; ?>">
 
             <label for="description">Description</label>
-            <textarea name="description" id="description" class="form-control"></textarea>
+            <textarea name="description" id="description" class="form-control"><?php echo $description; ?></textarea>
 
             <label for="duration">Durée</label>
-            <input type="number" name="duration" id="duration" class="form-control">
+            <input type="number" name="duration" id="duration" class="form-control" value="<?php echo $duration; ?>">
 
             <button class="btn btn-primary">Ajouter</button>
         </form>
