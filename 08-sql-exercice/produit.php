@@ -3,6 +3,10 @@ require 'helpers.php';
 
 $id = $_GET['id'] ?? null;
 $product = selectOne('SELECT * FROM products WHERE id = :id', ['id' => $id]);
+
+if (!$product) {
+    die('404');
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
