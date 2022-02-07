@@ -53,20 +53,28 @@
     <div class="container">
         <h1 class="text-center py-5">Ajouter un produit</h1>
 
+        <?php if (!empty($errors)) { ?>
+            <ul class="alert alert-danger">
+                <?php foreach ($errors as $error) { ?>
+                    <li><?php echo $error; ?></li>
+                <?php } ?>
+            </ul>
+        <?php } ?>
+
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <form action="" method="post">
                     <label for="name">Nom</label>
-                    <input type="text" name="name" id="name" class="form-control">
+                    <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>">
 
                     <label for="price">Prix</label>
-                    <input type="text" name="price" id="price" class="form-control">
+                    <input type="text" name="price" id="price" class="form-control" value="<?php echo $price; ?>">
 
                     <label for="description">Description</label>
-                    <textarea name="description" id="description" class="form-control"></textarea>
+                    <textarea name="description" id="description" class="form-control"><?php echo $description; ?></textarea>
 
                     <div class="form-check form-switch mt-3">
-                        <input class="form-check-input" type="checkbox" name="state" id="state" value="1">
+                        <input class="form-check-input" type="checkbox" name="state" id="state" value="1" <?= ($state == 1) ? 'checked' : ''; ?>>
                         <label class="form-check-label" for="state">En stock ?</label>
                     </div>
 
