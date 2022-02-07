@@ -32,6 +32,10 @@ function selectOne($sql, $bindings = []) {
     return $query->fetch();
 }
 
+function post($index) {
+    return $_POST[$index] ?? null;
+}
+
 /**
  * Permet d'afficher un prix HT en TTC.
  */
