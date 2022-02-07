@@ -32,12 +32,22 @@
             // On fait une requête SQL sur MySQL => On a insére un produit dans la BDD
             // J'insère un produit où le name est $name, description est $description...
             $requete = db()->prepare("INSERT INTO products (name, description, price, state) VALUES (:name, :description, :price, :state)");
-            $requete->execute([
-                'name' => $name,
-                'description' => $description,
-                'price' => $price,
-                'state' => $state,
-            ]);
+
+            try {
+                $requete->execute([
+                    'name' => $name,
+                    'description' => $description,
+                    'price' => $price,
+                    'state' => $state,
+                ]);
+            } catch (Exception $e) { ?>
+                <!-- si le code dans le try échoue, on exécute le code suivant -->
+                <div class="alert alert-danger">
+                    <p><?php echo $e->getMessage(); ?></p>
+                    <p>Tu as fait une erreur à la ligne <?php echo $e->getLine(); ?></p>
+                    <img class="img-fluid" width="150" src="img/travolta.gif" alt="John Travolta">
+                </div>
+            <?php }
         }
     } // Fin du if pour le formulaire soumis
 ?>
