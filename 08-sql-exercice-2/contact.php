@@ -37,7 +37,7 @@
 
             $success = 'Super, ça marche';
         }
-    }
+    } // Formulaire Soumis
 ?>
 <!DOCTYPE html>
 <html lang="fr">
