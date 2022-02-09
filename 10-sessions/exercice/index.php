@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require 'helpers.php';
 
 // Récupère les données
 $username = $_POST['username'] ?? null;
@@ -10,11 +11,22 @@ $errors = [];
 if (!empty($_POST)) {
     // On vérifie la valeur saisie dans le champ username
     if ($username != 'admin') {
-        $errors[] = 'Le login est faux.';
+        // 1ère version
+        // $errors[] = 'Le login est faux.';
     }
 
     if ($password != 'admin') {
-        $errors[] = 'Le mot de passe est faux.';
+        // $errors[] = 'Le mot de passe est faux.';
+    }
+
+    // 2ème version, on vérifie que l'utilisateur est inscrit
+    $user = selectOne('SELECT * FROM users WHERE username = :username', [
+        'username' => $username,
+        // 'password' => $password,
+    ]);
+
+    if (!$user || $user['password'] != $password) {
+        $errors[] = 'Identifiants incorrects.';
     }
 
     // Si on n'a pas d'erreurs, on se connecte...
@@ -46,5 +58,7 @@ if (!empty($_POST)) {
 
         <button>Login</button>
     </form>
+
+    <a href="register.php">Inscription</a>
 </body>
 </html>

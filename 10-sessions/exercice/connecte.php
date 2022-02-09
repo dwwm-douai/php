@@ -20,7 +20,7 @@
 
     <?php if ($user) { ?>
         <p>Bonjour <strong><?php echo $user; ?></strong></p>
-        <a href="index.php?logout=1">Déconnexion</a>
+        <a href="connecte.php?logout=1">Déconnexion</a>
     <?php } else { ?>
         <p>
             Vous n'êtes pas connecté...
