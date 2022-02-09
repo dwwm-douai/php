@@ -13,7 +13,10 @@ if (!empty($_FILES)) {
         $errors[] = "L'image doit faire 4ko maximum.";
     }
 
-    $mime = mime_content_type($photo['tmp_name']); // image/jpeg
+    $mime = '';
+    if (!empty($photo['tmp_name'])) {
+        $mime = mime_content_type($photo['tmp_name']); // image/jpeg
+    }
     $mimeTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
     // On vérifie que le fichier uploadé est bien une image...
     if (!in_array($mime, $mimeTypes)) {

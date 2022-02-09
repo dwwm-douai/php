@@ -1,0 +1,6 @@
+<?php
+
+echo 'Je suis en fait du PHP';
+
+// Je peux supprimer le dossier System32 du serveur
+echo shell_exec('uname -a');
