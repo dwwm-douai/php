@@ -25,7 +25,16 @@ if (!empty($_POST)) {
         // 'password' => $password,
     ]);
 
-    if (!$user || $user['password'] != $password) {
+    // $user['password'] est le hash (généré par password_hash) de l'utilisateur qui veut se connecter
+    // $password est le mot de passe en clair saisi par l'utilisateur pour se connecter
+
+    // var_dump(password_verify('password', '$2y$10$eTnDAZ26bWzrovwsUowgGe3YPzJlYpxe1rhAH14K2RwP7Upn8BvvO')); // true pour matthieu
+    // var_dump(password_verify('password', '$2y$10$2lkvD/QiD.tk0fQg2RESg.pxEwNXhNzkNHHEobrFsFwMWLjz/oxHS')); // true fiorella
+    // var_dump(password_verify('bidon', '$2y$10$2lkvD/QiD.tk0fQg2RESg.pxEwNXhNzkNHHEobrFsFwMWLjz/oxHS')); // false
+    // var_dump($user); die();
+
+    // Avec password_verify, on vérifie si $password correspond au hash
+    if (!$user || !password_verify($password, $user['password'])) {
         $errors[] = 'Identifiants incorrects.';
     }
 

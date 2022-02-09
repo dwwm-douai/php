@@ -29,7 +29,7 @@ if (!empty($_POST)) {
     if (empty($errors)) {
         insert('INSERT INTO users (username, password) VALUES (:username, :password)', [
             'username' => $username,
-            'password' => $password,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
         ]);
 
         $success = 'Vous êtes bien inscrit.';
