@@ -30,6 +30,12 @@
         <p><?php echo $chat2->joueAvec($chat1) ?></p>
 
         <p>Mon chat a <?php echo $chat1->getPattes() ?> pattes.</p>
+
+        <h2><?php echo $chat1->nom ?> se bat avec <?php echo $chat2->nom ?></h2>
+        <p><?php echo $chat1->seBatAvec($chat2) ?></p>
+        <p><?php echo $chat1->seBatAvec($chat2) ?></p>
+        <p>Chat 1 : <?php echo $chat1->getPattes() ?></p>
+        <p>Chat 2 : <?php echo $chat2->getPattes() ?></p>
     </div>
 </body>
 </html>

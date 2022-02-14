@@ -23,6 +23,21 @@ class Chat {
         return $this->nom.' joue avec '.$chat->nom;
     }
 
+    public function seBatAvec($chat)
+    {
+        // Sur 0, $chat perd, $this gagne
+        // Sur 1, $chat gagne, $this perd
+        $chatGagne = rand(0, 1);
+
+        if ($chatGagne) {
+            $this->pattes--;
+            return $chat->nom.' a gagné';
+        } else {
+            $chat->pattes--;
+            return $this->nom.' a gagné';
+        }
+    }
+
     public function getPattes()
     {
         return $this->pattes;
