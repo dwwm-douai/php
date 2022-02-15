@@ -15,13 +15,13 @@ class BankAccount
 
     public function getBalance()
     {
-        return $this->owner.' a '.$this->amount.' €';
+        return $this->owner.' a '.$this->amount.' € <br>';
     }
 
     public function depositMoney($add)
     {
         if ($add < 0) {
-            echo 'Pas de dépôt négatif';
+            echo 'Pas de dépôt négatif <br>';
         } else {
             $this->amount += $add;
         }
@@ -33,11 +33,18 @@ class BankAccount
     {
         // On vérifie si on peut faire le retrait
         if ($this->amount - $remove < 0) {
-            echo 'Pas de retrait possible';
+            echo 'Pas de retrait possible <br>';
         } else {
             $this->amount -= $remove;
         }
 
         return $this->amount;
+    }
+
+    public static function milionnaire()
+    {
+        $bankAccount = new BankAccount(123, 'Elon', 1000000);
+
+        return new Owner('Elon Musk', 1000000, $bankAccount);
     }
 }
