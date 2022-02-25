@@ -15,6 +15,7 @@
 
     <div class="container">
         <div class="row">
+            <!-- @todo filtre TTC / HT -->
             <?php foreach ($products as $product) { ?>
                 <div class="col-lg-6">
                     <div class="row align-items-center">
