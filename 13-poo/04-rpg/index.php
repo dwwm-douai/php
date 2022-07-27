@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require 'Character.php';
 
 // On crée le personnage si le formulaire est envoyé
@@ -19,6 +21,18 @@ if (!empty($_POST)) {
         // Insert dans la BDD
         $character->save();
     }
+}
+
+// On regarde si on a cliqué sur le bouton
+if (isset($_GET['incarn'])) {
+    $_SESSION['incarn'] = $_GET['incarn'];
+}
+
+$incarn = null;
+// On regarde si un personnage est choisi
+if (isset($_SESSION['incarn'])) {
+    $incarn = Character::find($_SESSION['incarn']);
+    var_dump($incarn);
 }
 ?>
 <!DOCTYPE html>
@@ -49,11 +63,11 @@ if (!empty($_POST)) {
         <?php } ?>
 
         <?php if ($character) { ?>
-        <ul>
-            <?php foreach ($character->errors() as $error) { ?>
-                <li><?= $error; ?></li>
-            <?php } ?>
-        </ul>
+            <ul class="alert alert-danger">
+                <?php foreach ($character->errors() as $error) { ?>
+                    <li><?= $error; ?></li>
+                <?php } ?>
+            </ul>
         <?php } ?>
 
         <div class="w-50 mx-auto">
@@ -110,6 +124,31 @@ if (!empty($_POST)) {
 
                 <button class="btn btn-primary">Créer</button>
             </form>
+        </div>
+
+        <div class="row my-5">
+            <?php foreach (Character::all() as $character) { ?>
+                <div class="col-lg-2">
+                    <div class="card">
+                        <img class="card-img" src="<?= $character->image(); ?>" alt="<?= $character->name; ?>">
+                        <div class="card-body">
+                            <h2 class="card-title"><?= $character->name; ?></h2>
+                            <p>Tu es un <?php echo $character->class.' '.$character->tribe; ?>.</p>
+                            <ul>
+                                <li>Ta santé: <?= $character->health; ?></li>
+                                <li>Ta force: <?= $character->strength; ?></li>
+                                <li>Ton mana: <?= $character->mana; ?></li>
+                            </ul>
+
+                            <?php if ($incarn) { ?>
+                                <a class="btn btn-primary" href="fight.php?attacker=<?= $incarn->id; ?>&target=<?= $character->id; ?>">Combattre</a>
+                            <?php } else { ?>
+                                <a class="btn btn-primary" href="index.php?incarn=<?= $character->id; ?>">Incarner</a>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </body>

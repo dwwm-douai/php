@@ -2,18 +2,20 @@
 
 class Character
 {
+    public $id;
     public $name;
     public $class;
     public $tribe;
     public $health = 100;
     public $strength = 10;
     public $mana = 10;
+    public static $db;
 
-    public function __construct($n, $c, $t)
+    public function __construct($n = null, $c = null, $t = null)
     {
-        $this->name = $n;
-        $this->class = $c;
-        $this->tribe = $t;
+        $this->name = $n ?? $this->name;
+        $this->class = $c ?? $this->class;
+        $this->tribe = $t ?? $this->tribe;
 
         $this->init();
     }
@@ -67,12 +69,35 @@ class Character
         return $errors;
     }
 
+    public static function db()
+    {
+        if (!self::$db) {
+            self::$db = new PDO('mysql:host=localhost;dbname=exercice-sql-1;charset=utf8', 'root', '');
+        }
+
+        return self::$db;
+    }
+
     public function save()
     {
-        $db = new PDO('mysql:host=localhost;dbname=exercice-sql-1;charset=utf8', 'root', '');
-        // $db->prepare......
-        // $db->execute....
+        $query = self::db()->prepare('INSERT INTO characters (name, tribe, class) VALUES (?, ?, ?)');
 
-        echo "INSERT INTO characters (name, tribe, class) VALUES ($this->name, $this->tribe, $this->class)";
+        $query->execute([$this->name, $this->tribe, $this->class]);
+    }
+
+    public static function all()
+    {
+        $query = self::db()->query('SELECT * FROM characters');
+
+        return $query->fetchAll(PDO::FETCH_CLASS, self::class);
+    }
+
+    public static function find($id)
+    {
+        $query = self::db()->prepare('SELECT * FROM characters WHERE id = ?');
+        $query->execute([$id]);
+        $query->setFetchMode(PDO::FETCH_CLASS, self::class);
+
+        return $query->fetch();
     }
 }
